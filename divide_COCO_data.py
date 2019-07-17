@@ -39,15 +39,24 @@ for box in detlist:
 			counter[categories] += 1
 			val_imgid.append(box['image_id'])
 
+scount = 0
+
+for box in detlist:
+	box['id'] = scount
+	scount += 1
+	
+
 for img in imglist:
 	if img['file_name'] in val_imgid:
 		val_imglist.append(img)
-		imglist.remove(img)
 
-with open(imglst, 'w') as fi:
-	for image in val_imgid:
-		line = "%s\n" % image
-		fi.write(line)
+for img in val_imglist:
+	imglist.remove(img)
+
+# with open(imglst, 'w') as fi:
+# 	for image in val_imgid:
+# 		line = "%s\n" % image
+# 		fi.write(line)
 
 traindata = {
   "info": {
