@@ -1,5 +1,6 @@
 """
 get nsfw label file list
+deprecated
 """
 import os
 

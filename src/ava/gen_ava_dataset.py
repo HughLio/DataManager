@@ -1,7 +1,32 @@
+"""
+Generate ava dataset
+input: label file (imagename, label)
+output: ava json list, newlabel file
+TO DO:
+detection task
+label file >< bucket
+"""
 from __future__ import print_function
 import os
 import sys
 import json
+import argparse
+
+parser = argparse.ArgumentParser(description='generate ava dataset')
+parser.add_argument('--perfix', dest='perfix',
+                    help='ava perfix ',
+                    default='', type=str)
+parser.add_argument('--labelfile', dest='label_lst',
+                    help='source label file',
+                    default=None, type=str, required=True)
+parser.add_argument('--savepath', dest='save_file',
+					help='savefile name', 
+					default='.', type=str)
+parser.add_argument('--bucket', dest='bucket',
+					help='bucket name', 
+					default='aaa-test', type=str)
+
+args = parser.parse_args()
 
 def gen_ava_format(filename, prefix, classification=False, detection=False, pre_label=None):
 	temp = dict()
@@ -26,10 +51,12 @@ def gen_ava_format(filename, prefix, classification=False, detection=False, pre_
 	return temp
 
 def main():
-	lstfile = "/Users/hugh/Documents/ava-pet/annotations/test.txt"
-	avajsonfile = "/Users/hugh/Documents/ava-pet/annotations/ava-petest.json"
-	labelfile = "/Users/hugh/Documents/ava-pet/annotations/catval.txt"
-	prefix = "ava-pet/"
+	lstfile = args.label_lst
+	path = args.savefile
+	avajsonfile = path + "/ava-dataset.json"
+	labelfile = path + "/newlabel.lst"
+	prefix = args.prefix
+	bucket = args.bucket
 	ava_list = list()
 	newlabel = list()
 	with open(lstfile) as fl:
@@ -39,10 +66,10 @@ def main():
 				break
 			label = [i.strip() for i in line.strip().split(' ')]
 			filename = label[0]
-			pre_label = label[2]
+			pre_label = label[1]
 
-			filenames = "/workspace/mnt/bucket/test-ava/ava-pet/" + filename + ".jpg"
-			new_line = '%s %s' %(filenames, int(pre_label) - 1)
+			filenames = "/workspace/mnt/bucket/" + bucket + '/' + 'prefix' + filename
+			new_line = '%s %s' %(filenames, int(pre_label))
 			newlabel.append(new_line)
 
 			sline = gen_ava_format(filename, prefix, True, False, pre_label)
@@ -60,13 +87,3 @@ if __name__ == "__main__":
 	print('Start generating ava jsonlist...')
 	main()
 	print('...done')
-
-
-
-
-
-
-
-
-
-

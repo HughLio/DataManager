@@ -1,3 +1,12 @@
+"""
+script for evaluate
+input : result json label lst
+output : error image lst error json
+error json format:
+"Top-1 Index": inference result
+"GroundTruth": ground truth
+"""
+
 import os
 import json
 

@@ -1,11 +1,28 @@
 """
-ananly confidence from resultjson.
+infant inference
+analy confidence from resultjson.
 try to get a better threshold 
 input : result json, label file
-version0.1: precision 
+version0.1: precision  
+TODO: pulp terror threshold
 """
 import json
 import os
+import argparse
+
+parser = argparse.ArgumentParser(description='test threshold')
+
+parser.add_argument('--resfile', dest='res_file',
+                    help='result json file',
+                    default=None, type=str, required=True)
+parser.add_argument('--truelist', dest='tlst',
+					help='true list', 
+					default='.', type=str)
+parser.add_argument('--falselist', dest='flst',
+					help='false list', 
+					default='', type=str)
+
+args = parser.parse_args()
 
 def analy_result (result, threshold):
     # res = json.load(result)
@@ -21,11 +38,11 @@ def main():
 	FR = 0.0
 	FNc = 0
 	FRc = 0
-	truelist = "/Users/hugh/Desktop/lst/img-label-0904se.lst"
-	otherlist = "/Users/hugh/Desktop/lst/img-label-0904se.lst-ot"
+	truelist = args.tlst
+	otherlist = args.flst
 	basethreshold = 0.99999
 
-	results = "/Users/hugh/Desktop/result0905-nsfw.json"
+	results = args.res_file
 	with open(results, 'r') as fj:
 		res = json.load(fj)
 

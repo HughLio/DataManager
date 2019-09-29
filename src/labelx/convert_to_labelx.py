@@ -2,10 +2,23 @@
 from __future__ import print_function
 
 import json
+import argparse
+
 """
 convert inference result.json to labelx.json 
 multilabels
 """
+parser = argparse.ArgumentParser(description='convert result format to labelx format')
+parser.add_argument('--perfix', dest='perfix',
+                    help='bucket url perfix ',
+                    default='', type=str)
+parser.add_argument('--result_file', dest='source_lst',
+                    help='source image list',
+                    default=None, type=str, required=True)
+parser.add_argument('--savefile', dest='save_file',
+					help='savefile name', 
+					default='labelx.json', type=str)
+args = parser.parse_args()
 
 def gen_labelX_format (url=None, label=None):
 	"""
@@ -39,9 +52,9 @@ def analy_result (result, perfix=None):
     return jsonfile
 
 def main():
-	result_file = "infant-res.json"
-	outfile = "labex-infant.json"
-	perfix = "https://pv2q3r2ba.bkt.clouddn.com/"
+	result_file = args.result_file
+	outfile = args.save_file
+	perfix = args.perfix
 
 	with open(result_file) as fr:
 		result = json.load(fr)

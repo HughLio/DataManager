@@ -1,6 +1,6 @@
 """
 Generate upload list from label list.
-format: key, source file
+format: key, source file path
 """
 import os
 import argparse

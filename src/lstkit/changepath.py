@@ -4,7 +4,7 @@ change images path
 import os
 import argparse
 
-parser = argparse.ArgumentParser(description='change image path')
+parser = argparse.ArgumentParser(description='change images path')
 parser.add_argument('--perfix', dest='perfix',
                     help='new imagePath ',
                     default='', type=str)

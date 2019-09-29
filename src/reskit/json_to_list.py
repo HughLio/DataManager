@@ -1,3 +1,7 @@
+"""
+Convert result to lst file
+depercated
+"""
 import json
 
 def analy_result (result, perfix=None):

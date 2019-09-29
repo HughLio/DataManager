@@ -6,11 +6,24 @@ imagename label
 """
 import json
 import os
+import argparse
 
+parser = argparse.ArgumentParser(description='convert labelx format to label lst')
+parser.add_argument('--jsonpath', dest='json_dir',
+                    help='labelx results path',
+                    default=None, type=str, required=True)
+parser.add_argument('--savepath', dest='save_path',
+                    help='save file urilst ',
+                    default='.', type=str)
+
+args = parser.parse_args()
 def main():
-	jsondir = '/Users/hugh/Documents/data/labelx-jh/infant-iter/'
-	urlst = '/Users/hugh/Desktop/lst/url-0904se-ot.lst'
-	imglabel = '/Users/hugh/Desktop/lst/img-label-0904se.lst-ot'
+	jsondir = args.json_dir
+	path = args.save_path
+	localtime = time.localtime(time.time())
+	date = date = str(localtime.tm_mon) + str(localtime.tm_mday)
+	urlst = path + '/uri' + date + '.lst'
+	imglabel = path + '/imglabel' + date + '.lst'
 
 	url =[]
 	imglist = []
