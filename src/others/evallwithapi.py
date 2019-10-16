@@ -7,8 +7,7 @@ urilst = '/Users/hugh/Documents/tools/upload/isis-uri.lst'
 savefile = '/Users/hugh/Documents/testset/isis-res.json'
 
 
-access_key = 'fjxKGs5obR6WYH39j3wnHJN-kRQvFBURvsxLFp3D'
-secret_key = 'W-dUKsoG0AOyAspjRlfmB75HZ_a6IzWl0MaIvmCC'
+# access_key = ''
 auth = QiniuMacAuth(access_key, secret_key)
 
 body = {
