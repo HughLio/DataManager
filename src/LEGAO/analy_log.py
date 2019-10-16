@@ -3,7 +3,7 @@ ananly log downloaded from pandora
 get the data from legao platform
 To Do
 @HughLio
---argruments: label: pulp or sexy
+--argruments: label: pulp , sexy, nsfw
               savepath
 --output: urifile labelfile
 """
@@ -52,17 +52,30 @@ for dic in logs:
 	if "pulp" in log['eval_response']['scenes'].keys():
 		pulp = log['eval_response']['scenes']['pulp']
 		reqpulpcount += 1
-		if pulp['details'][0]['label'] == label:
-			reqinfantcount += 1
-			if log['uri_data'] != "":
-				keys = [i.strip() for i in log['uri_data'][0].strip().split('/')]
-				try:
-					key = keys[-2] + '/' + keys[-1]
-				except:
-					print key
-					continue
-				uidlist.append(key)
-				labelst[log['uri_data'][0]] = pulp['details'][0]['label']
+		if label == 'nsfw':
+			if pulp['details'][0]['label'] != 'normal':
+				reqinfantcount += 1
+				if log['uri_data'] != "":
+					keys = [i.strip() for i in log['uri_data'][0].strip().split('/')]
+					try:
+						key = keys[-2] + '/' + keys[-1]
+					except:
+						print key
+						continue
+					uidlist.append(key)
+					labelst[log['uri_data'][0]] = pulp['details'][0]['label']
+		else:
+			if pulp['details'][0]['label'] == label:
+				reqinfantcount += 1
+				if log['uri_data'] != "":
+					keys = [i.strip() for i in log['uri_data'][0].strip().split('/')]
+					try:
+						key = keys[-2] + '/' + keys[-1]
+					except:
+						print key
+						continue
+					uidlist.append(key)
+					labelst[log['uri_data'][0]] = pulp['details'][0]['label']
 print("images called pulp API: {}".format(reqpulpcount),
 	label + "results images: {}".format(reqinfantcount))
 
