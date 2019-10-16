@@ -1,6 +1,7 @@
-#!/usr/bin/env bash
-#set -x
 #Shell Scripts for daily inference
+#!/usr/bin bash
+#set -x
+
 
 set -x
 
