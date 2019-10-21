@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*
 from icrawler.builtin import GreedyImageCrawler
 
-storage = {'root_dir': '/Users/hugh/Documents/data/terror/isis'}
+storage = {'root_dir': '/Users/hugh/Documents/data/animal/goat'}
 
 
 # greedy_crawler = GreedyImageCrawler(storage=storage)
@@ -17,7 +17,7 @@ from icrawler.builtin import BaiduImageCrawler, BingImageCrawler, GoogleImageCra
 
 google_crawler = GoogleImageCrawler(feeder_threads=1, parser_threads=1, downloader_threads=4, storage=storage)
 filters = dict(color='pink')
-google_crawler.crawl(keyword='isis', filters=None, offset=0, max_num=10000, min_size=(200, 200), max_size=None, file_idx_offset=0)
+google_crawler.crawl(keyword='goat', filters=None, offset=0, max_num=100, min_size=(200, 200), max_size=None, file_idx_offset=0)
 
 # bing_clawler = BingImageCrawler(downloader_threads=4, storage={'root_dir': '/Users/hugh/Documents/data/body_painting/biying/'})
 
